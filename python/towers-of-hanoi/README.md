@@ -1,6 +1,14 @@
 # Towers of Hanoi
 
-My solutions to the `Towers of Hanoi` puzzle, including visualization (via console) and testing (via `pytest`).
+My solutions to the [Towers of Hanoi]([https://en.wikipedia.org/wiki/Tower_of_Hanoi) puzzle, including step-by-step visualization (via CLI) and testing (via *pytest*).
+
+## Usage / Testing
+
+Due to the usage of [structural pattern matching](https://peps.python.org/pep-0636/), Python 3.10 is required.
+
+`python towers_recursive.py <#discs>` displays solution for specified number of discs.
+
+`pytest python towers_recursive.py` performs testing for the implementation.
 
 ## About
 
@@ -16,4 +24,4 @@ A logic/math puzzle which requires the transfer of discs from one rod to another
 
 ### Recursive
 
-The cleanest approach I've found so far - recursion seems to be very well suited for this task.  It took some struggling through the *Data Structures & Algorithms Made Easy* explanation to get a good grasp on this method; an iterative approach makes more sense to me, but is *much* less elegant.
+The cleanest approach I've found so far - recursion seems to be very well suited for this task.  It took some struggling to get a good grasp on this method, the book *Data Structures & Algorithms Made Easy* helped me out.

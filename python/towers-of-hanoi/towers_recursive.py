@@ -2,6 +2,7 @@
 
 from typing import List
 from enum import Enum
+import sys
 
 class Stack(Enum):
     SRC = 0
@@ -33,8 +34,6 @@ class Stacks:
             case (Stack.TGT, Stack.SRC):
                 self.src.append(self.tgt.pop())
 
-        print(self)
-
     def __repr__(self) -> str:
         res = [
             f'{"".join(f"{n}" for n in reversed(self.src)):>{self.size}}',
@@ -44,7 +43,7 @@ class Stacks:
         return " ".join(res)
 
 
-def towers_of_hanoi(n: int) -> Stacks:
+def towers_of_hanoi(n: int, verbose: bool) -> Stacks:
     """Recursive algorithm for the Towers of Hanoi problem.
     
     - Recursively move all discs above bottom (n-1) from src -> tgt stack via aux
@@ -52,16 +51,26 @@ def towers_of_hanoi(n: int) -> Stacks:
     - Recursively move all discs above bottom (n-1) from aux -> tgt stack via src
     """
     towers = Stacks(n)
-    print(towers)
+    if verbose: 
+        print("--- Towers of Hanoi ---")
+        print(f"{'S':^{n}} {'T':^{n}} {'A':^{n}}")
+        print(towers)
 
-    def inner(n: int, src: Stack, tgt: Stack, aux: Stack, s: Stacks):
-        
+    def inner(n: int, src: Stack, tgt: Stack, aux: Stack, s: Stacks):        
         if n == 1:
             s.move(src, tgt)
+
+            if verbose: 
+                print(towers)
+
             return
 
-        inner(n-1, src, aux, tgt, s)
+        inner(n-1, src, aux, tgt, s)        
         s.move(src, tgt)
+
+        if verbose: 
+            print(towers)
+
         inner(n-1, aux, tgt, src, s)
 
     inner(n, Stack.SRC, Stack.TGT, Stack.AUX, towers)
@@ -73,11 +82,14 @@ def test_towers():
     # Final target (tgt) stack should equal starting source (src) stack.
     for size in range(1, 10):
         start = Stacks(size).src
-        finish = towers_of_hanoi(size).tgt
+        finish = towers_of_hanoi(size, False).tgt
         assert start == finish
 
 
 if __name__ == "__main__":
-    print("--- Towers of Hanoi ---")
+    try:
+        arg1 = int(sys.argv[1])
+    except (IndexError, ValueError):
+        raise SystemExit(f"Usage: {sys.argv[0]} <#discs>")
 
-    towers_of_hanoi(3)
+    towers_of_hanoi(arg1, True)
