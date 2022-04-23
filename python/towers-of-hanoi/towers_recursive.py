@@ -10,7 +10,7 @@ class Stack(Enum):
     AUX = 2
 
 
-class Stacks:
+class Towers:
     """Source, target, and auxiliary stacks. Printed in order of smallest -> largest disc."""
     def __init__(self, n: int) -> None:
         self.size = n
@@ -43,20 +43,20 @@ class Stacks:
         return " ".join(res)
 
 
-def towers_of_hanoi(n: int, verbose: bool) -> Stacks:
+def towers_of_hanoi(n: int, verbose: bool) -> Towers:
     """Recursive algorithm for the Towers of Hanoi problem.
     
     - Recursively move all discs above bottom (n-1) from src -> tgt stack via aux
     - Move bottommost disc (n) from src -> tgt
     - Recursively move all discs above bottom (n-1) from aux -> tgt stack via src
     """
-    towers = Stacks(n)
+    towers = Towers(n)
     if verbose: 
         print("--- Towers of Hanoi ---")
         print(f"{'S':^{n}} {'T':^{n}} {'A':^{n}}")
         print(towers)
 
-    def inner(n: int, src: Stack, tgt: Stack, aux: Stack, s: Stacks):        
+    def inner(n: int, src: Stack, tgt: Stack, aux: Stack, s: Towers):        
         if n == 1:
             s.move(src, tgt)
 
@@ -81,7 +81,7 @@ def towers_of_hanoi(n: int, verbose: bool) -> Stacks:
 def test_towers():
     # Final target (tgt) stack should equal starting source (src) stack.
     for size in range(1, 10):
-        start = Stacks(size).src
+        start = Towers(size).src
         finish = towers_of_hanoi(size, False).tgt
         assert start == finish
 
