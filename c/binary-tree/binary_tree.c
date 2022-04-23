@@ -9,8 +9,8 @@
 struct Child {
     char name[16];
     int  ix;
-    int  child1;
-    int  child2;
+    int  left;
+    int  right;
 };
 
 struct BTree {
@@ -28,7 +28,7 @@ struct BTree newBTree() {
 }
 
 void printChild(struct Child c) {
-    printf("Child [%d] '%s': %d, %d\n", c.ix, c.name, c.child1, c.child2);
+    printf("Child [%d] '%s': %d, %d\n", c.ix, c.name, c.left, c.right);
 }
 
 void printTree(struct BTree *t) {
@@ -52,7 +52,7 @@ void pushChild(struct BTree *t, struct Child c) {
     printf("[pushChild] c address: %p\n", &c);
     printf("[pushChild] t address: %p\n", &t);
 
-    printf("[pushChild] Child [%d] '%s': %d, %d\n", c.ix, c.name, c.child1, c.child2);
+    printf("[pushChild] Child [%d] '%s': %d, %d\n", c.ix, c.name, c.left, c.right);
 
     printf("pushing child...\n");
     if (t->count < t->size) {
