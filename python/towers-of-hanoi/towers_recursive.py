@@ -4,10 +4,20 @@ from typing import List
 from enum import Enum
 import sys
 
+
 class Stack(Enum):
     SRC = 0
     TGT = 1
     AUX = 2
+
+    def __str__(self) -> str:
+        match self:
+            case Stack.SRC:
+                return "SRC"
+            case self.TGT:
+                return "TGT"
+            case self.AUX:
+                return "AUX"
 
 
 class Towers:
@@ -19,20 +29,33 @@ class Towers:
         self.aux: List[int] = []
 
     def move(self, src: Stack, tgt: Stack):
-        """Moves topmost disc from `src` stack to `tgt` stack."""
+        """Moves topmost disc from `src` stack to `tgt` stack and return disc moved."""
+        d = -1
+        to = []
+
         match (src, tgt):
             case (Stack.SRC, Stack.TGT):
-                self.tgt.append(self.src.pop())
+                to = self.tgt
+                d = self.src.pop()
             case (Stack.SRC, Stack.AUX):
-                self.aux.append(self.src.pop())
+                to = self.aux
+                d = self.src.pop()
             case (Stack.AUX, Stack.SRC):
-                self.src.append(self.aux.pop())
+                to = self.src
+                d = self.aux.pop()
             case (Stack.AUX, Stack.TGT):
-                self.tgt.append(self.aux.pop())
+                to = self.tgt
+                d = self.aux.pop()
             case (Stack.TGT, Stack.AUX):
-                self.aux.append(self.tgt.pop())
+                to = self.aux
+                d = self.tgt.pop()
             case (Stack.TGT, Stack.SRC):
-                self.src.append(self.tgt.pop())
+                to = self.src
+                d = self.tgt.pop()   
+
+        to.append(d)
+
+        return d
 
     def __repr__(self) -> str:
         res = [
@@ -54,29 +77,29 @@ def towers_of_hanoi(n: int, verbose: bool) -> Towers:
     if verbose: 
         print("--- Towers of Hanoi ---")
         print(f"{'S':^{n}} {'T':^{n}} {'A':^{n}}")
-        print(towers)
+        print(f"{towers}\tstart")
 
     def inner(n: int, src: Stack, tgt: Stack, aux: Stack, s: Towers):        
         if n == 1:
-            s.move(src, tgt)
+            d = s.move(src, tgt)
 
             if verbose: 
-                print(towers)
+                print(f"{towers}\tdisc {d} {src} -> {tgt}")
 
             return
 
         inner(n-1, src, aux, tgt, s)        
-        s.move(src, tgt)
+        d = s.move(src, tgt)
 
         if verbose: 
-            print(towers)
+            print(f"{towers}\tdisc {d} {src} -> {tgt}")
 
         inner(n-1, aux, tgt, src, s)
 
     inner(n, Stack.SRC, Stack.TGT, Stack.AUX, towers)
 
-    return towers
-       
+    return towers 
+           
 
 def test_towers():
     # Final target (tgt) stack should equal starting source (src) stack.
