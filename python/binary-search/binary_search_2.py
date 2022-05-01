@@ -1,19 +1,15 @@
-# Binary Search in Python - Version 1: Tries Remaining
+# Binary Search in Python - Version 2: A More Refined Approach
 
 from typing import Optional, List
-from math import log2
 
 def binary_search(target: int, numbers: List[int]) -> Optional[int]:
     """Returns the index of `target` in `numbers`, if present."""
     length = len(numbers)
-    if length == 0 or target < numbers[0] or target > numbers[-1]:
-        return None
 
     low_ix = 0
     high_ix = length - 1
-    tries_remaining = int(log2(length)) + 1
-    
-    while tries_remaining > 0:
+        
+    while low_ix <= high_ix:
         current_ix = (low_ix + high_ix) // 2
         number = numbers[current_ix]
 
@@ -23,8 +19,6 @@ def binary_search(target: int, numbers: List[int]) -> Optional[int]:
             high_ix = current_ix - 1
         else:
             low_ix = current_ix + 1
-
-        tries_remaining -= 1
 
     return None
 

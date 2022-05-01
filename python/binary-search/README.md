@@ -17,9 +17,16 @@ Edge Cases
 - `numbers` has one value
 - `numbers` list is empty
 
-Time complexity: O(n) -> linear
+Time complexity: `O(n)` -> linear
+
+## Approaches
+
+1. Tries remaining approach (`binary_search_1.py`): check all edge cases, calculate the maximum number of attempts before failure, and then find the index.
+2. Elegant approach (`binary_search_2.py`):  builds upon the first approach, removing excess calculations and the need to import `log2` from `math`.
 
 ## Visualization
+
+For the approach in `binary_search_2.py`.
 
 Where:
 - `L` is the `low_index`
@@ -72,4 +79,6 @@ numbers = [1,2,3,4,5]
 
 ## Testing
 
-Ensure that `pytest` is installed, then run `pytest binary_search_1.py`.
+Ensure that `pytest` is installed, then run one of the following:
+- `pytest binary_search_1.py`
+- `pytest binary_search_2.py`
