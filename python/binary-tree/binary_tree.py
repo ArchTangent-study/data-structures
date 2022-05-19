@@ -64,7 +64,7 @@ class BinaryTree:
             self.assign_child(self.current_ix, self.parent_ix, side)
 
         if side == Side.RIGHT:
-            self.parent_ix += 1
+            self.set_next_parent_index()
 
     def assign_child(self, child_ix, parent_ix, parent_side):
         """Assigns index (pointer) of child node to parent node at given index"""
@@ -73,6 +73,13 @@ class BinaryTree:
             parent.left = self.nodes[child_ix]
         else:
             parent.right = self.nodes[child_ix]
+
+    def set_next_parent_index(self):
+        """Set parent index to the next non-null Node in the tree."""
+        p_index = self.parent_ix + 1
+        for new_ix, node in enumerate(self.nodes[p_index:], start=p_index):
+            if node.value is not None:
+                self.parent_ix = new_ix
 
     def __len__(self) -> int:
         return len(self.nodes)
@@ -113,7 +120,15 @@ def test_binary_tree():
             [None, None, None, None, None, None], 
             "[1, 2, None, 3, None, 4]",
             6
-        ),        
+        ),
+        (
+            [1, None, 2, None, 3, None, 4], 
+            [1, None, 2, None, 3, None, 4], 
+            [None, None, None, None, None, None, None], 
+            [2, None, 3, None, 4, None, None], 
+            "[1, None, 2, None, 3, None, 4]",
+            7
+        ),
         (
             [1], 
             [1], 
