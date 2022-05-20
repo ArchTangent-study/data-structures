@@ -1,6 +1,6 @@
 # Binary Tree
 
-[Binary Tree](https://en.wikipedia.org/wiki/Binary_tree) implementations in Python, with testing available via `pytest`.
+[Binary Tree](https://en.wikipedia.org/wiki/Binary_tree) implementations in Python, with unit testing available via `pytest`.
 
 ## Traversal Types
 

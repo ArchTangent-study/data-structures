@@ -1,6 +1,6 @@
 # Breadth-First Search
 
-Breadth-First Search implementations in Python, with testing available via `pytest`.
+Breadth-First Search implementations in Python, with unit testing available via `pytest`.
 
 ## Testing
 
