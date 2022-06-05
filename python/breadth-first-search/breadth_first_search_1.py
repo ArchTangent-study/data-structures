@@ -46,6 +46,4 @@ def test_bfs():
         ({'A': ['B','D'],'B': ['C','J'],'D': ['G','H'],'E': ['C'],'H': ['E']}, 'D', 'C', 3),
     ]
     for graph, source, target, expected in suite:
-        # Make copy of each graph, since this BFS mutates the graph
-        graph = copy(graph)
         assert breadth_first_search(graph, source, target) == expected

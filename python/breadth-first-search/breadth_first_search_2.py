@@ -1,6 +1,5 @@
 # Breadth-First-Search (BFS) - Recursive, w/non-mutated {Node:List[Node]} graph.
 from typing import Any, Dict, Optional, Set
-from copy import copy
 
 def breadth_first_search(graph: Dict, source, target) -> Optional[Any]:
     """Returns depth where target is first found, or None if not found."""
@@ -33,7 +32,7 @@ def bfs_inner(graph: Dict, source, target, depth: int, searched: Set):
     
     # Target was not found
     return None
-    
+
 
 def test_bfs():
     suite = [
@@ -47,18 +46,3 @@ def test_bfs():
     ]
     for graph, source, target, expected in suite:
         assert breadth_first_search(graph, source, target) == expected
-
-if __name__ == "__main__":
-    suite = [
-        ({'A': ['B']}, 'A', 'B', 1),
-        ({'A': ['B']}, 'C', 'B', None),
-        ({'A': ['B','C'],'C': ['D']}, 'A', 'D', 2),
-        ({'A': ['B','C'],'C': ['D']}, 'A', 'E', None),
-        ({'A': ['B','C'],'C': ['D']}, 'B', 'D', None),
-        ({'A': ['B','D'],'B': ['C','J'],'D': ['G','H'],'E': ['C'],'H': ['E']}, 'A', 'C', 2),
-        ({'A': ['B','D'],'B': ['C','J'],'D': ['G','H'],'E': ['C'],'H': ['E']}, 'D', 'C', 3),
-    ]
-    for graph, source, target, expected in suite:
-        print(f"graph: {graph}")
-        bfs =  breadth_first_search(graph, source, target)
-        print(f"  bfs: {bfs}")
