@@ -1,6 +1,6 @@
 # Breadth-First Search (BFS)
 
-Breadth-First Search implementations in Python, with unit testing available via `pytest`.
+[Breadth-First Search](https://en.wikipedia.org/wiki/Breadth-first_search) implementations in Python, with unit testing available via `pytest`.
 
 These versions of BFS return the `depth` of the first Node found, or `None` if not found.
 
