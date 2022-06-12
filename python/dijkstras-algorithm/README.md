@@ -24,6 +24,14 @@ Big Picture:
 7. Construct the path by backtracking from `target` to `source` via the `cost_table`.
 8. Reverse the path so that it's in `source -> target` order
 
+## Example
+
+The following graph is used in testing:
+
+![Graph](example_graph.png)
+
+While there are multiple paths from `A` to `E`, the shortest path is from `A -> C -> D -> E` with a cost of `9`.  Dijkstra's algorithm allows us to find these paths where algorithms like Breadth First Search would fail.
+
 ## Testing
 
 Ensure that `pytest` is installed, then run one of the following:
