@@ -1,6 +1,6 @@
 # Quicksort
 
-Quicksort implementations in Python, with testing available via `pytest`.  Used to sort values in an array (Python `list`) from lowest to highest.
+[Quicksort](https://en.wikipedia.org/wiki/Quicksort) implementations in Python, with testing available via `pytest`.  Used to sort values in an array (Python `list`) from lowest to highest.
 
 Requirements:
 - Input is an array
