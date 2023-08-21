@@ -1,8 +1,8 @@
-# Breadth-First-Search (BFS) - Recursive, w/mutable {Node:List[Node]} graph.
-from typing import Any, Dict, Optional, Set
-from copy import copy
+"""Breadth-First-Search (BFS) - Recursive, w/mutable {Node:List[Node]} graph."""
+from typing import Dict, Optional, Set
 
-def breadth_first_search(graph: Dict, source, target) -> Optional[Any]:
+
+def breadth_first_search(graph: Dict, source, target) -> Optional[int]:
     """Returns depth where target is first found, or None if not found."""
     if source == target:
         return 0

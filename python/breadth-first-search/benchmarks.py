@@ -1,5 +1,5 @@
 # Breadth-First Search (BFS) benchmarking.
-import breadth_first_search_1, breadth_first_search_2 ,breadth_first_search_3
+import breadth_first_search_1, breadth_first_search_2 ,breadth_first_search_3, breadth_first_search_4
 import timeit
 
 from typing import Any, Dict, Optional
@@ -17,8 +17,13 @@ def bench_bfs_3(suite):
     for graph, source, target in suite:
         bfs = breadth_first_search_3.breadth_first_search(graph, source, target)
 
+def bench_bfs_4(suite):
+    for graph, source, target in suite:
+        bfs = breadth_first_search_4.breadth_first_search(graph, source, target)
+
 if __name__ == "__main__":
     suite = [
+        ({'A': ['B']}, 'A', 'A'),
         ({'A': ['B']}, 'A', 'B'),
         ({'A': ['B']}, 'C', 'B'),
         ({'A': ['B','C'],'C': ['D']}, 'A', 'D'),
@@ -38,6 +43,11 @@ if __name__ == "__main__":
         setup='from __main__ import bench_bfs_3, suite'
     )
 
+    bfs_4 = timeit.timeit(
+        'bench_bfs_4(suite)',
+        setup='from __main__ import bench_bfs_4, suite'
+    )
+
     # Since BFS1 mutates the graph in-place, test it last
     bfs_1 = timeit.timeit(
         'bench_bfs_1(suite)',
@@ -52,3 +62,6 @@ if __name__ == "__main__":
 
     print("BFS 3 (Queue)")
     print(f"  time: {bfs_3}")
+
+    print("BFS 4 (Double Buffer)")
+    print(f"  time: {bfs_4}")

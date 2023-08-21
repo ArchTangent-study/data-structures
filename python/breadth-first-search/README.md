@@ -49,6 +49,15 @@ Big Picture:
     - add the `node` to `searched` (to avoid cycling)
 7. If queue is emptied before `target` is found, return `None`.
 
+## Method 4: Double Buffer
+
+Big Picture:
+1. Store a `set` of `searched` nodes.
+2. Store a double buffer with lists `qa` and `qb`.
+3. While nodes remain to be searched (`qa` or `qb` not empty), perform BFS until `target`` is found.
+4. If `target` is found, return `depth` at which it was found.
+5. If `target` is not found, return `None`
+
 ## Testing
 
 Ensure that `pytest` is installed, then run one of the following:
@@ -61,6 +70,7 @@ Ensure that `pytest` is installed, then run one of the following:
 Winner: **Recursive (Mutating)**
 
 Benched using `timeit` in `benchmarks.py`:
-1. Recursive (Mutating): `1.385 seconds`
-2. Recursive (Non-Mutating): `5.312 seconds`
-3. Queue: `8.977 seconds`
+1. Recursive (Mutating): `0.551 seconds`
+2. Recursive (Non-Mutating): `2.086 seconds`
+3. Queue: `4.625 seconds`
+4. Double Buffer: `2.996 seconds`
