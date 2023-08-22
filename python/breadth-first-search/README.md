@@ -53,8 +53,8 @@ Big Picture:
 
 Big Picture:
 1. Store a `set` of `searched` nodes.
-2. Store a double buffer with lists `qa` and `qb`.
-3. While nodes remain to be searched (`qa` or `qb` not empty), perform BFS until `target`` is found.
+2. Store a double buffer with lists `curr` and `next`.
+3. While nodes remain to be searched (`curr` not empty), perform BFS until `target`` is found.
 4. If `target` is found, return `depth` at which it was found.
 5. If `target` is not found, return `None`
 

@@ -10,28 +10,27 @@ def breadth_first_search(graph: Dict, src, tgt) -> Optional[int]:
     if src not in graph:
         return None
 
-    qa = [edge for edge in graph[src]]
-    qb = []
+    curr = [edge for edge in graph[src]]
+    next = []
 
     seen = {src}
     depth = 1
 
-    while qa or qb:
-        while qa:
-            node = qa.pop()
+    while curr:
+        while curr:
+            node = curr.pop()
 
             if node == tgt:
                 return depth
-            if node in seen:
-                continue
 
             seen.add(node)
             
             for edge in graph.get(node, ()):
-                qb.append(edge)
+                if edge not in seen:
+                    next.append(edge)
 
         depth += 1
-        qa, qb = qb, qa
+        curr, next = next, curr
 
     return None
 
